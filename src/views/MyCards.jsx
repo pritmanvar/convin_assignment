@@ -1,12 +1,17 @@
-import React, { useEffect, useState } from "react";
-import Nav from "../Components/Nav";
-import Card from "../Components/Card";
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import axios from "axios";
-const Cards = () => {
+
+import Nav from "../Components/Nav";
+import LoginRequired from "../Components/global_components/LoginRequired";
+import MyCard from "../Components/MyCard";
+
+const MyCards = () => {
     const [generatedCards, setGeneratedCards] = useState([]);
+    const userName = useSelector((state) => state.CurrentUser.user.userName);
     const getCards = () => {
         axios
-            .get("http://localhost:3000/cards")
+            .get(`http://localhost:3000/cards?userName=${userName}`)
             .then((res) => {
                 if (res.status !== 200) {
                     console.log(res.message);
@@ -22,9 +27,10 @@ const Cards = () => {
                         userName,
                         bucket,
                     }) => {
+                        console.log(id, "from mycards");
                         return (
-                            <Card
-                                id
+                            <MyCard
+                                id={id}
                                 key={id}
                                 title={title}
                                 videoUrl={videoUrl}
@@ -47,11 +53,14 @@ const Cards = () => {
     useEffect(() => {
         getCards();
     }, []);
+
     return (
         <>
-            <Nav active='cards' />
+            <Nav active='mycards' />
             <div className='flex flex-wrap justify-center mt-16'>
-                {generatedCards.length === 0 ? (
+                {userName === "" ? (
+                    <LoginRequired parent='mycards' />
+                ) : generatedCards.length === 0 ? (
                     <p className='text-2xl'>
                         No cards found. Please create some.
                     </p>
@@ -63,4 +72,4 @@ const Cards = () => {
     );
 };
 
-export default Cards;
+export default MyCards;

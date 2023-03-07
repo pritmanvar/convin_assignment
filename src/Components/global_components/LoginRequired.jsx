@@ -1,7 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const LoginRequired = () => {
+const LoginRequired = ({ parent }) => {
+    console.log(parent);
     const navigateTo = useNavigate();
     return (
         <div className='text-center'>
@@ -10,7 +11,7 @@ const LoginRequired = () => {
             </p>
             <button
                 className='rounded-md bg-gray-800 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-gray-900'
-                onClick={() => navigateTo("/login")}>
+                onClick={() => navigateTo(`/login/${parent}`)}>
                 Login Now
             </button>
         </div>

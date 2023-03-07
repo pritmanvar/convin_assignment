@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import { userActions } from "../store/current-user-slice";
 import Nav from "../Components/Nav";
 
-const Login = () => {
+const Login = ({}) => {
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
+
+    const { parent } = useParams();
 
     const dispatch = useDispatch();
     const navigateTo = useNavigate();
@@ -35,7 +37,8 @@ const Login = () => {
                 dispatch(
                     userActions.updateUser({ userName, id: userExist[0].id })
                 );
-                navigateTo("/");
+                console.log(parent, `/${parent}`);
+                navigateTo(`/${parent}`);
             }
         } catch (error) {
             console.log(error);
@@ -110,7 +113,7 @@ const Login = () => {
                                 <button
                                     type='submit'
                                     className=' rounded-md bg-gray-800 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-gray-900'>
-                                    Submit
+                                    Log In
                                 </button>
                             </div>
                         </div>

@@ -150,7 +150,7 @@ const SignUp = () => {
                                 <button
                                     type='submit'
                                     className=' rounded-md bg-gray-800 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-gray-900'>
-                                    Submit
+                                    Sign Up
                                 </button>
                             </div>
                         </div>
