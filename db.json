@@ -1,0 +1,33 @@
+{
+  "cards": [
+    {
+      "title": "fafa",
+      "videoUrl": "http://localhost:5173/createcard",
+      "description": "dsafa",
+      "bucket": "Canada",
+      "id": 1
+    },
+    {
+      "title": "Prit",
+      "videoUrl": "http://localhost:5173/createcard",
+      "description": "fakj fksajflk",
+      "bucket": "skalfja lkja",
+      "id": 2
+    },
+    {
+      "title": "Manvar",
+      "videoUrl": "http://localhost:5173/createcard",
+      "description": "fkdsa hfja hfj",
+      "bucket": "fsda a",
+      "id": 3
+    },
+    {
+      "title": "Kashyap",
+      "videoUrl": "http://localhost:5173/createcard",
+      "description": "kjlfa jfkalj",
+      "bucket": "Mexico",
+      "id": 4
+    }
+  ],
+  "users": []
+}
