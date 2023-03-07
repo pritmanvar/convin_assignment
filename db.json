@@ -7,13 +7,29 @@
             "description": "This is about Why use AI-powered sales reporting tools?Why should you use AI-powered sales tools? Benefits of sales reporting software, Important sales analytics tools\n",
             "userName": "prit_manvar",
             "bucket": "Education"
+        },
+        {
+            "id": 1678187697388,
+            "title": "Customer sentiment analysis",
+            "videoUrl": "https://www.youtube.com/watch?v=ATJKa_zrm2E",
+            "description": "Customer sentiment analysis | the ultimate deal breaker for contact center CX.| customer emotion hold in influencing CX today |  CX in today’s contact centers | Using Customer Sentiment to Incentivize Call Center Reps |What is Customer Sentiment and What Makes it So Valuable?",
+            "userName": "prit_manvar",
+            "bucket": "Bussiness"
+        },
+        {
+            "id": 1678189606768,
+            "title": "Patch in JSON Server",
+            "videoUrl": "https://www.youtube.com/watch?v=iNps8SBv-1A&list=PLC3y8-rFHvwhc9YZIdqNL5sWeTCGxF4ya&index=10",
+            "description": "This is about patch request in JSON Server",
+            "userName": "prit_manvar",
+            "bucket": "JSON Server"
         }
     ],
     "users": [
         {
             "userName": "prit_manvar",
             "password": "123",
-            "bucket": [],
+            "bucket": ["Education", "Bussiness", "JSON Server"],
             "id": 1
         }
     ]

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { userActions } from "../store/current-user-slice";
 
 const Nav = ({ active }) => {
-    const userName = useSelector((state) => state.CurrentUser.userName);
+    const userName = useSelector((state) => state.CurrentUser.user.userName);
     const dispatch = useDispatch();
     const handleLogOut = () => {
         dispatch(userActions.updateUserName(""));

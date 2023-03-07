@@ -1,18 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 // Reducer Functions
-const updateUserName = (state, action) => {
-    state.userName = action.payload;
+const updateUser = (state, action) => {
+    state.user.id = action.payload.id;
+    state.user.userName = action.payload.userName;
 };
 
 const initialState = {
-    userName: "",
+    user: { id: null, userName: "" },
 };
 const currentUserSlice = createSlice({
     name: "user",
     initialState,
     reducers: {
-        updateUserName,
+        updateUser,
     },
 });
 

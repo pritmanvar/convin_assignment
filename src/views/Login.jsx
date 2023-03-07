@@ -32,7 +32,9 @@ const Login = () => {
                 alert("Invalid Credentials, Please Try Again.");
                 setPassword("");
             } else {
-                dispatch(userActions.updateUserName(userName));
+                dispatch(
+                    userActions.updateUser({ userName, id: userExist[0].id })
+                );
                 navigateTo("/");
             }
         } catch (error) {

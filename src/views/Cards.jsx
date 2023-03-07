@@ -8,13 +8,11 @@ const Cards = () => {
         axios
             .get("http://localhost:3000/cards")
             .then((res) => {
-                console.log(res.status);
                 if (res.status !== 200) {
                     console.log(res.message);
                     throw new Error("Some error occored, Please try again");
                 }
 
-                console.log(res.data);
                 const cards = res.data.map(
                     ({
                         id,

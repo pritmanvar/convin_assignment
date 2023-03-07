@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import Nav from "../Components/Nav";
@@ -13,7 +13,36 @@ const CreateCard = () => {
     const [createNewBucket, setCreateNewBucket] = useState(false);
     const [newBucket, setNewBucket] = useState("");
 
-    const userName = useSelector((state) => state.CurrentUser.userName);
+    const userName = useSelector((state) => state.CurrentUser.user.userName);
+    const userId = useSelector((state) => state.CurrentUser.user.id);
+
+    console.log(userId, userName);
+
+    const [bucketList, setBucketList] = useState([]);
+    const [bucketOptions, setBucketOptoins] = useState([]);
+    const getBucketList = () => {
+        if (userName === "") {
+            return;
+        }
+        axios
+            .get(`http://localhost:3000/users?userName=${userName}`)
+            .then((res) => {
+                setBucketList(res.data[0].bucket);
+                const buckets = res.data[0].bucket.map((bucket) => {
+                    return (
+                        <option key={bucket} value={bucket}>
+                            {bucket}
+                        </option>
+                    );
+                });
+
+                setBucketOptoins(buckets);
+            });
+    };
+
+    useEffect(() => {
+        getBucketList();
+    }, []);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -26,6 +55,17 @@ const CreateCard = () => {
             userName,
             bucket: createNewBucket === true ? newBucket : bucket,
         };
+
+        if (createNewBucket) {
+            if (bucketList.indexOf(newBucket) === -1) {
+                axios.patch(`http://localhost:3000/users/${userId}`, {
+                    bucket: [...bucketList, newBucket],
+                });
+                setBucketList((prev) => {
+                    return [...prev, newBucket];
+                });
+            }
+        }
 
         // post req to json-server to add new card
         axios
@@ -173,12 +213,7 @@ const CreateCard = () => {
                                             <option value=''>
                                                 Select Bucket
                                             </option>
-                                            <option value='Canada'>
-                                                Canada
-                                            </option>
-                                            <option value='Mexico'>
-                                                Mexico
-                                            </option>
+                                            {bucketOptions}
                                         </select>
                                     )}
 
