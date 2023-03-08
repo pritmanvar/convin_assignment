@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Nav from "../Components/Nav";
 
 const SignUp = () => {
+    // form data
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
     const [cnfPassword, setCnfPassword] = useState("");
@@ -12,6 +13,8 @@ const SignUp = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        // password didn't match
         if (password !== cnfPassword) {
             setPassword("");
             setCnfPassword("");
@@ -20,14 +23,16 @@ const SignUp = () => {
         }
 
         try {
-            const res = await axios.get("http://localhost:3000/users");
+            // check if current users is already exist or not.
+            const res = await axios.get(
+                "http://localhost:3000/users?userName=" + userName
+            );
             if (res.status !== 200) {
-                console.log(res);
                 throw new Error(res);
             }
 
-            const userExist = res.data.filter((u) => u.userName === userName);
-            if (userExist.length > 0) {
+            // check current user already exist or not.
+            if (res.data.length > 0) {
                 alert(
                     "User with user name " +
                         userName +
@@ -38,28 +43,26 @@ const SignUp = () => {
                 setPassword("");
                 setCnfPassword("");
             } else {
+                // if not add new user
                 try {
                     const result = await axios.post(
                         "http://localhost:3000/users",
-                        { userName, password, bucket: [] }
+                        { userName, password, bucket: [], history: [] }
                     );
                     if (result.status !== 201) {
-                        console.log(result);
-                        throw new Error(requestIdleCallback);
+                        throw new Error(result.message);
                     }
 
-                    navigateTo("/login");
+                    navigateTo("/login/");
                 } catch (error) {
-                    console.log(error);
-                    throw new Error("some error occured in creating new user");
+                    throw new Error(error);
                 }
             }
         } catch (error) {
-            console.log(error);
+            console.error(error);
             setUserName("");
             setPassword("");
             setCnfPassword("");
-            alert("Some error occured. Please try again.");
         }
     };
     return (

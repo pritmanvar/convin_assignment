@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 import Nav from "../Components/Nav";
-import { useSelector } from "react-redux";
 import LoginRequired from "../Components/global_components/LoginRequired";
 import CardForm from "../Components/global_components/CardForm";
-import { useParams } from "react-router-dom";
 import axios from "axios";
 
 const UpdateCard = () => {
@@ -13,10 +13,10 @@ const UpdateCard = () => {
 
     const [cardDetails, setCardDetails] = useState({});
     const getCardDetails = () => {
+        // get card details from json-server
         axios.get(`http://localhost:3000/cards/${id}`).then((res) => {
             if (res.status !== 200) {
-                console.log(res.message);
-                alert("Some error occured");
+                console.error(res.message);
                 return;
             }
 
@@ -39,6 +39,7 @@ const UpdateCard = () => {
                 {userName === "" ? (
                     <LoginRequired parent='mycards' />
                 ) : (
+                    // give card details to card form.
                     <CardForm
                         id={cardDetails.id}
                         defaultTitle={cardDetails.title}

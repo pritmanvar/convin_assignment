@@ -14,16 +14,20 @@ const Login = ({}) => {
 
     const dispatch = useDispatch();
     const navigateTo = useNavigate();
+
+    // handle form submit
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+            // get users from json-server
             const res = await axios.get("http://localhost:3000/users");
             if (res.status !== 200) {
-                console.log(res);
                 throw new Error(res);
             }
 
             const userExist = res.data.filter((u) => u.userName === userName);
+
+            // user not found
             if (userExist.length == 0) {
                 alert(
                     "User with user name " +
@@ -31,18 +35,26 @@ const Login = ({}) => {
                         " not found. Please sigiUp first."
                 );
             } else if (userExist[0].password !== password) {
+                // incorrect password
                 alert("Invalid Credentials, Please Try Again.");
                 setPassword("");
             } else {
+                // login successfull
+                // set current user in redux store
                 dispatch(
                     userActions.updateUser({ userName, id: userExist[0].id })
                 );
-                console.log(parent, `/${parent}`);
-                navigateTo(`/${parent}`);
+
+                dispatch(userActions.clearHistory());
+                const history = userExist[0].history.map((h) =>
+                    dispatch(userActions.updateHistory(h))
+                );
+
+                // move to parent component
+                navigateTo(`/${parent === undefined ? "" : parent}`);
             }
         } catch (error) {
-            console.log(error);
-            alert("Some error occured. Please try again.");
+            console.error(error);
             setUserName("");
             setPassword("");
         }

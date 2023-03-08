@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const CardForm = ({
     id = null,
@@ -9,6 +10,9 @@ const CardForm = ({
     defaultDescription = "",
     defaultBucket = "",
 }) => {
+    const navigateTo = useNavigate();
+
+    // states for form data.
     const [cardId, setCardId] = useState(null);
     const [title, setTitle] = useState("");
     const [videoUrl, setVideoUrl] = useState("");
@@ -17,11 +21,15 @@ const CardForm = ({
     const [createNewBucket, setCreateNewBucket] = useState(false);
     const [newBucket, setNewBucket] = useState("");
 
+    // user name and user id from redux store
     const userName = useSelector((state) => state.CurrentUser.user.userName);
     const userId = useSelector((state) => state.CurrentUser.user.id);
 
+    // to show options in select tag
     const [bucketList, setBucketList] = useState([]);
     const [bucketOptions, setBucketOptoins] = useState([]);
+
+    // function to get bucket list of user from json-server
     const getBucketList = () => {
         if (userName === "") {
             return;
@@ -42,6 +50,7 @@ const CardForm = ({
             });
     };
 
+    // update form data states
     useEffect(() => {
         getBucketList();
         setCardId(id);
@@ -51,11 +60,12 @@ const CardForm = ({
         setBucket(defaultBucket);
     }, [id, defaultTitle, defaultVideoUrl, defaultDescription, defaultBucket]);
 
+    // sumbit form
     const handleSubmit = (e) => {
         e.preventDefault();
 
         const formData = {
-            id: cardId ? cardId : new Date().getTime(),
+            id: cardId ? cardId : new Date().getTime(), // if we have card id then we have to update else creae new.
             title,
             videoUrl,
             description,
@@ -63,6 +73,7 @@ const CardForm = ({
             bucket: createNewBucket === true ? newBucket : bucket,
         };
 
+        // new bucket was added in user bucket list.
         if (createNewBucket) {
             if (bucketList.indexOf(newBucket) === -1) {
                 axios.patch(`http://localhost:3000/users/${userId}`, {
@@ -70,6 +81,14 @@ const CardForm = ({
                 });
                 setBucketList((prev) => {
                     return [...prev, newBucket];
+                });
+                setBucketOptoins((prev) => {
+                    return [
+                        ...prev,
+                        <option key={newBucket} value={newBucket}>
+                            {newBucket}
+                        </option>,
+                    ];
                 });
             }
         }
@@ -82,11 +101,6 @@ const CardForm = ({
                     if (res.status !== 200) {
                         throw new Error(
                             "Something went wront, please try again."
-                        );
-                    } else {
-                        console.log(
-                            "Card updated successfully with data: ",
-                            res.data
                         );
                     }
                 })
@@ -102,11 +116,6 @@ const CardForm = ({
                         throw new Error(
                             "Something went wront, please try again."
                         );
-                    } else {
-                        console.log(
-                            "Card created successfully with data: ",
-                            res.data
-                        );
                     }
                 })
                 .catch((err) => {
@@ -114,6 +123,7 @@ const CardForm = ({
                 });
         }
 
+        // reset form states
         setTitle("");
         setVideoUrl("");
         setDescription("");
@@ -250,11 +260,12 @@ const CardForm = ({
                     </div>
                 </div>
 
+                {/* Submit button */}
                 <div className='bg-gray-50 px-4 py-3 text-center sm:px-6'>
                     <button
                         type='submit'
                         className='rounded-md bg-gray-800 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-gray-900'>
-                        Update a Card
+                        {id !== null ? "Update a Card" : "Create a Card"}
                     </button>
                 </div>
             </div>

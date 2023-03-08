@@ -8,6 +8,7 @@ const Nav = ({ active }) => {
     const dispatch = useDispatch();
     const handleLogOut = () => {
         dispatch(userActions.updateUser({ id: null, userName: "" }));
+        dispatch(userActions.clearHistory());
     };
     return (
         <div className='flex justify-between items-center px-4 py-2 h-12 bg-gray-800 text-gray-400 fixed w-full top-0'>

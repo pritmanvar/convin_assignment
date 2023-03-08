@@ -1,56 +1,49 @@
 {
-  "cards": [
-    {
-      "id": 1678186531916,
-      "title": "My first card",
-      "videoUrl": "https://youtu.be/HBMhmxOQlPM",
-      "description": "This is about Why use AI-powered sales reporting tools?Why should you use AI-powered sales tools? Benefits of sales reporting software, Important sales analytics tools\n",
-      "userName": "prit_manvar",
-      "bucket": "Education"
-    },
-    {
-      "id": 1678187697388,
-      "title": "Customer sentiment analysis",
-      "videoUrl": "https://www.youtube.com/watch?v=ATJKa_zrm2E",
-      "description": "Customer sentiment analysis | the ultimate deal breaker for contact center CX.| customer emotion hold in influencing CX today |  CX in today’s contact centers | Using Customer Sentiment to Incentivize Call Center Reps |What is Customer Sentiment and What Makes it So Valuable?",
-      "userName": "prit_manvar",
-      "bucket": "Bussiness"
-    },
-    {
-      "id": 1678189606768,
-      "title": "Patch in JSON Server",
-      "videoUrl": "https://www.youtube.com/watch?v=iNps8SBv-1A&list=PLC3y8-rFHvwhc9YZIdqNL5sWeTCGxF4ya&index=10",
-      "description": "This is about patch request in JSON Server",
-      "userName": "prit_manvar",
-      "bucket": "JSON Server"
-    },
-    {
-      "id": 1678190811293,
-      "title": "quality management problem",
-      "videoUrl": "https://www.youtube.com/watch?v=_MgOP0CBFh4",
-      "description": "In this about quality management problems and how to solve that. In this video we discussed about solution for the same.",
-      "userName": "prit",
-      "bucket": "Management"
-    }
-  ],
-  "users": [
-    {
-      "userName": "prit_manvar",
-      "password": "123",
-      "bucket": [
-        "Education",
-        "Bussiness",
-        "JSON Server"
-      ],
-      "id": 1
-    },
-    {
-      "userName": "prit",
-      "password": "123",
-      "bucket": [
-        "Management"
-      ],
-      "id": 2
-    }
-  ]
+    "cards": [
+        {
+            "id": 1678186531916,
+            "title": "My first card",
+            "videoUrl": "https://youtu.be/HBMhmxOQlPM",
+            "description": "This is about Why use AI-powered sales reporting tools?Why should you use AI-powered sales tools? Benefits of sales reporting software, Important sales analytics tools\n",
+            "userName": "prit_manvar",
+            "bucket": "Education"
+        },
+        {
+            "id": 1678187697388,
+            "title": "Customer sentiment analysis",
+            "videoUrl": "https://www.youtube.com/watch?v=ATJKa_zrm2E",
+            "description": "Customer sentiment analysis | the ultimate deal breaker for contact center CX.| customer emotion hold in influencing CX today |  CX in today’s contact centers | Using Customer Sentiment to Incentivize Call Center Reps |What is Customer Sentiment and What Makes it So Valuable?",
+            "userName": "prit_manvar",
+            "bucket": "Bussiness"
+        },
+        {
+            "id": 1678189606768,
+            "title": "Patch in JSON Server",
+            "videoUrl": "https://www.youtube.com/watch?v=iNps8SBv-1A&list=PLC3y8-rFHvwhc9YZIdqNL5sWeTCGxF4ya&index=10",
+            "description": "This is about patch request in JSON Server",
+            "userName": "prit_manvar",
+            "bucket": "JSON Server"
+        }
+    ],
+    "users": [
+        {
+            "userName": "prit_manvar",
+            "password": "123",
+            "bucket": ["Education", "Bussiness", "JSON Server"],
+            "history": [],
+            "id": 1
+        },
+        {
+            "userName": "prit",
+            "password": "123",
+            "bucket": ["Technical", "temp"],
+            "history": [
+                "{\"name\":\"My first card\",\"url\":\"https://youtu.be/HBMhmxOQlPM\",\"time\":\"08/03/2023, 16:07:10\"}",
+                "{\"name\":\"Customer sentiment analysis\",\"url\":\"https://www.youtube.com/watch?v=ATJKa_zrm2E\",\"time\":\"08/03/2023, 16:07:12\"}",
+                "{\"name\":\"Patch in JSON Server\",\"url\":\"https://www.youtube.com/watch?v=iNps8SBv-1A&list=PLC3y8-rFHvwhc9YZIdqNL5sWeTCGxF4ya&index=10\",\"time\":\"08/03/2023, 16:07:14\"}",
+                "{\"name\":\"My first card\",\"url\":\"https://youtu.be/HBMhmxOQlPM\",\"time\":\"08/03/2023, 16:09:22\"}"
+            ],
+            "id": 2
+        }
+    ]
 }

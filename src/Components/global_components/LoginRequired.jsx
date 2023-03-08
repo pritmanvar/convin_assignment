@@ -2,7 +2,6 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const LoginRequired = ({ parent }) => {
-    console.log(parent);
     const navigateTo = useNavigate();
     return (
         <div className='text-center'>

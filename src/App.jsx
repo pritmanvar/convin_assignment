@@ -1,10 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import Cards from "./views/Cards";
 import CreateCard from "./views/CreateCard";
 import SignUp from "./views/SignUp";
 import Login from "./views/Login";
 import MyCards from "./views/MyCards";
 import UpdateCard from "./views/UpdateCard";
+import UserHistory from "./views/UserHistory";
 function App() {
     return (
         <div className='App'>
@@ -14,8 +16,9 @@ function App() {
                     <Route path='/createcard' element={<CreateCard />} />
                     <Route path='/updatecard/:id' element={<UpdateCard />} />
                     <Route path='/mycards' element={<MyCards />} />
-                    <Route path='/history' element={<Cards />} />
+                    <Route path='/history' element={<UserHistory />} />
                     <Route path='/signup' element={<SignUp />} />
+                    <Route path='/login/' element={<Login />} />
                     <Route path='/login/:parent' element={<Login />} />
                 </Routes>
             </BrowserRouter>
