@@ -9,9 +9,12 @@ const updateUser = (state, action) => {
 
 const updateHistory = (state, action) => {
     axios
-        .patch(`http://localhost:3000/users/${state.user.id}`, {
-            history: [...state.history, action.payload],
-        })
+        .patch(
+            `https://convin-assignment.onrender.com/users/${state.user.id}`,
+            {
+                history: [...state.history, action.payload],
+            }
+        )
         .then((res) => {
             if (res.status !== 200) {
                 throw new Error(res);

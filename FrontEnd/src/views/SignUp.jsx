@@ -25,7 +25,8 @@ const SignUp = () => {
         try {
             // check if current users is already exist or not.
             const res = await axios.get(
-                "http://localhost:3000/users?userName=" + userName
+                "https://convin-assignment.onrender.com/users?userName=" +
+                    userName
             );
             if (res.status !== 200) {
                 throw new Error(res);
@@ -46,7 +47,7 @@ const SignUp = () => {
                 // if not add new user
                 try {
                     const result = await axios.post(
-                        "http://localhost:3000/users",
+                        "https://convin-assignment.onrender.com/users",
                         { userName, password, bucket: [], history: [] }
                     );
                     if (result.status !== 201) {

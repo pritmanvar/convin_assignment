@@ -35,7 +35,9 @@ const CardForm = ({
             return;
         }
         axios
-            .get(`http://localhost:3000/users?userName=${userName}`)
+            .get(
+                `https://convin-assignment.onrender.com/users?userName=${userName}`
+            )
             .then((res) => {
                 setBucketList(res.data[0].bucket);
                 const buckets = res.data[0].bucket.map((bucket) => {
@@ -76,9 +78,12 @@ const CardForm = ({
         // new bucket was added in user bucket list.
         if (createNewBucket) {
             if (bucketList.indexOf(newBucket) === -1) {
-                axios.patch(`http://localhost:3000/users/${userId}`, {
-                    bucket: [...bucketList, newBucket],
-                });
+                axios.patch(
+                    `https://convin-assignment.onrender.com/users/${userId}`,
+                    {
+                        bucket: [...bucketList, newBucket],
+                    }
+                );
                 setBucketList((prev) => {
                     return [...prev, newBucket];
                 });
@@ -96,7 +101,10 @@ const CardForm = ({
         if (cardId) {
             // update card iteam
             axios
-                .put(`http://localhost:3000/cards/${cardId}`, formData)
+                .put(
+                    `https://convin-assignment.onrender.com/cards/${cardId}`,
+                    formData
+                )
                 .then((res) => {
                     if (res.status !== 200) {
                         throw new Error(
@@ -110,7 +118,7 @@ const CardForm = ({
         } else {
             // post req to json-server to add new card
             axios
-                .post("http://localhost:3000/cards", formData)
+                .post("https://convin-assignment.onrender.com/cards", formData)
                 .then((res) => {
                     if (res.status !== 201) {
                         throw new Error(

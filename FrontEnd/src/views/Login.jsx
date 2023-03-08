@@ -20,7 +20,9 @@ const Login = ({}) => {
         e.preventDefault();
         try {
             // get users from json-server
-            const res = await axios.get("http://localhost:3000/users");
+            const res = await axios.get(
+                "https://convin-assignment.onrender.com/users"
+            );
             if (res.status !== 200) {
                 throw new Error(res);
             }

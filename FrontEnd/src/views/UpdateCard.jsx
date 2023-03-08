@@ -14,20 +14,22 @@ const UpdateCard = () => {
     const [cardDetails, setCardDetails] = useState({});
     const getCardDetails = () => {
         // get card details from json-server
-        axios.get(`http://localhost:3000/cards/${id}`).then((res) => {
-            if (res.status !== 200) {
-                console.error(res.message);
-                return;
-            }
+        axios
+            .get(`https://convin-assignment.onrender.com/cards/${id}`)
+            .then((res) => {
+                if (res.status !== 200) {
+                    console.error(res.message);
+                    return;
+                }
 
-            setCardDetails({
-                id: id,
-                title: res.data.title,
-                videoUrl: res.data.videoUrl,
-                description: res.data.description,
-                bucket: res.data.bucket,
+                setCardDetails({
+                    id: id,
+                    title: res.data.title,
+                    videoUrl: res.data.videoUrl,
+                    description: res.data.description,
+                    bucket: res.data.bucket,
+                });
             });
-        });
     };
     useEffect(() => {
         getCardDetails();

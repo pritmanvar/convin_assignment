@@ -30,7 +30,9 @@ const MyCards = () => {
             return;
         }
         axios
-            .get(`http://localhost:3000/users?userName=${userName}`)
+            .get(
+                `https://convin-assignment.onrender.com/users?userName=${userName}`
+            )
             .then((res) => {
                 setBucketOptoins(res.data[0].bucket);
             });
@@ -40,7 +42,7 @@ const MyCards = () => {
     const getCards = (bucket = "") => {
         axios
             .get(
-                `http://localhost:3000/cards?userName=${userName}${
+                `https://convin-assignment.onrender.com/cards?userName=${userName}${
                     bucket === "" ? "" : "&bucket=" + bucket
                 }`
             )
@@ -67,7 +69,7 @@ const MyCards = () => {
     const deleteCard = (id) => {
         // delete card from json-server
         axios
-            .delete(`http://localhost:3000/cards/${id}`)
+            .delete(`https://convin-assignment.onrender.com/cards/${id}`)
             .then((res) => {
                 if (res.status !== 200) {
                     throw new Error(res.message);

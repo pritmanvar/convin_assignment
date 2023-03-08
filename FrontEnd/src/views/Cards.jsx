@@ -11,7 +11,7 @@ const Cards = () => {
     // function to get cards from json-server
     const getCards = () => {
         axios
-            .get("http://localhost:3000/cards")
+            .get("https://convin-assignment.onrender.com/cards")
             .then((res) => {
                 if (res.status !== 200) {
                     throw new Error(res.message);
